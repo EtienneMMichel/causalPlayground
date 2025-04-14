@@ -1,0 +1,11 @@
+data:
+  symbols: ["BTC_USDT"]
+  timeframe: "15m"
+  start_date: "07-2023"
+  end_date: "08-2023"
+
+
+model:
+  name: "Dummy"
+  window: 30
+  horizon: 10
