@@ -1,11 +1,16 @@
+mode: discover_from_prices
+
 data:
-  symbols: ["BTC_USDT"]
+  symbols: ["BTC_USDT", "ETH_USDT", "SOL_USDT"]
   timeframe: "15m"
   start_date: "07-2023"
   end_date: "08-2023"
 
 
 model:
-  name: "Dummy"
-  window: 30
-  horizon: 10
+  name: "PCMCI"
+  alpha_level: 0.05
+  tau_max: 1
+  pc_alpha: None
+  independence_test:
+    name: CMIknn
