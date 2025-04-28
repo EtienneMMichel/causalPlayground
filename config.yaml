@@ -2,15 +2,17 @@ mode: discover_from_prices
 
 data:
   symbols: ["BTC_USDT", "ETH_USDT", "SOL_USDT"]
-  timeframe: "15m"
-  start_date: "07-2023"
-  end_date: "08-2023"
+  timeframe: "1h"
+  start_date: "07-2022"
+  end_date: "08-2024"
 
 
 model:
   name: "PCMCI"
-  alpha_level: 0.05
-  tau_max: 1
-  pc_alpha: None
+  alpha_level: 0.1
+  tau_max: 5
+  pc_alpha: 0.05
   independence_test:
-    name: CMIknn
+    name: ParCorr
+    args:
+      significance: analytic

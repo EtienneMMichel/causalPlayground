@@ -17,7 +17,7 @@ class PCMCI():
 
         self.alpha_level = config['model'].get("alpha_level", 0.05)
         self.tau_max = config['model'].get("tau_max", 1)
-        self.pc_alpha = config['model'].get("pc_alpha", None)
+        self.pc_alpha = config['model'].get("pc_alpha", 0.05)
 
         self.independence_test = self._build_independence_test(config)
         
@@ -32,6 +32,7 @@ class PCMCI():
 
     def __call__(self, data, datatime:np.array=None):
         data = np.log(data[1:]) - np.log(data[:-1])
+        data = np.nan_to_num(data)
         if datatime is None:
             dataframe = pp.DataFrame(data, 
                                 var_names=self.symbols)
