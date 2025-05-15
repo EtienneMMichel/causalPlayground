@@ -31,8 +31,6 @@ class PCMCI():
         return eval(f"{independence_test_name}(**{func_args})")
 
     def __call__(self, data, datatime:np.array=None):
-        data = np.log(data[1:]) - np.log(data[:-1])
-        data = np.nan_to_num(data)
         if datatime is None:
             dataframe = pp.DataFrame(data, 
                                 var_names=self.symbols)
@@ -51,11 +49,11 @@ class PCMCI():
         pcmci = tigramite_PCMCI(
             dataframe=dataframe, 
             cond_ind_test=self.independence_test,
-            verbosity=1)
+            verbosity=0)
 
         # pcmci.verbosity = 1
-        print("RUNNING...")
         results = pcmci.run_pcmci(tau_max=self.tau_max, pc_alpha=self.pc_alpha, alpha_level=self.alpha_level)
+        return results
         print("DONE")
         tp.plot_time_series_graph(
         figsize=(6, 4),
